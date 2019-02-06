@@ -3,6 +3,7 @@ import './App.css';
 import Form from './Form'
 import Auth from "./Auth"
 import Util from "./Util"
+import Homepage from './Hompage';
 
 class App extends Component {
 
@@ -26,7 +27,8 @@ class App extends Component {
   	const { user } = this.state;
     return (
       <div className="App">
-        <Form user={user} />
+			{user? <Homepage/>:<Form user={user} />}
+        
       </div>
     );
   }
