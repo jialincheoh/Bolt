@@ -1,6 +1,5 @@
 from app.dbCon import dbaseConn
 
-
 """ TODO: better db stuffs
 CREATE TABLE `users` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -46,3 +45,10 @@ class UserManagement:
         dbcon.db_conn_close()
 
         return User(*result)
+    @staticmethod
+    def deleteUser(uid):
+        dbcon =  dbaseConn()
+        with dbcon.db.cursor() as cursor:
+            sql = "DELETE FROM `users` WHERE `user_id`=%s"
+            cursor.execute(sql, (uid),)
+        dbcon.db_conn_close()            
