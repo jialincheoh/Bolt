@@ -10,18 +10,17 @@ const styles = theme => ({
       // padding: `0 ${theme.spacing.unit * 2}px`,
      },
      card: {
-      width: 600,
-      height: 600,
+      width: 400,
      },
      paper: {
-      width: 200,
-      height: 200,
+      width: 400,
+      height: 400,
      },
      textField: {
-      width: 200,
+      width: 400,
     },
     bodyTextField: {
-      width: 200,
+      width: 400,
     },
     container: {
       display: 'flex',
@@ -56,13 +55,6 @@ this.props.handleChange(name,ev.target.value)
              onChange={this.handleChange.bind(this,'subject')} 
              value={this.props.subject} 
              className={classes.textField}></TextField>
-             </Paper>
-             <Paper 
-             label="Memo" 
-             contentEditable = "true" 
-             className={classes.paper} 
-             value={this.props.body}   
-             onChange={this.handleChange.bind(this,'body')} >
              </Paper>
              <Paper 
              label="Memo" 

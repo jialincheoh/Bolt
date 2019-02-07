@@ -19,15 +19,16 @@ const styles = theme => ({
 })
 
 class Menubar extends React.Component{
-    state={anchorEl:null,open: null,level:0}
+
 handleClick(ev){
-    this.setState({anchorEl: ev.currentTarget , open:true})
+    this.props.clickHandler(ev)
+    
 }
 handleClose(ev){
-    this.setState({anchorEl: null ,open:null})
+    this.props.closeHandler(ev)
 }
 handleClickAway(ev){
-    this.setState({anchorEl: null , open:null})
+    this.props.clickAwayHandler(ev)
 }
 menuHandler(ev){
     this.props.changeMenu(ev.target.value);
@@ -41,19 +42,19 @@ menuHandler(ev){
               
                 <div>
                 <Button   
-                aria-owns={this.state.anchorEl ? 'simple-menu' : undefined}
+                aria-owns={this.props.anchorEl ? 'nav-menu' : undefined}
             aria-haspopup="true" onClick={this.handleClick.bind(this)}>
-            {this.state.open ? <Menu     
-            id="simple-menu"
-          anchorEl={this.state.anchorEl}
-          open={Boolean(this.state.anchorEl)}
+            <Menu     
+            id="nav-menu"
+          anchorEl={this.props.anchorEl}
+          open={Boolean(this.props.anchorEl)}
           onClose={this.handleClose.bind(this)}>
                 <MenuItem value={0} onClick={this.menuHandler.bind(this)}>Home</MenuItem>
                 <MenuItem value={1} onClick={this.menuHandler.bind(this)}>Sent Memos</MenuItem>
                 <MenuItem value={2} onClick={this.menuHandler.bind(this)}>Recieved Memos</MenuItem>
                 <MenuItem value={3} onClick={this.menuHandler.bind(this)}>Drafts</MenuItem>
                 <MenuItem onClick={e => Auth.logout()}>Logout</MenuItem>
-                </Menu>: null}
+            </Menu>
                 <Typography variant="h6">Open Menu</Typography>
                 </Button>
                 </div>
@@ -65,4 +66,5 @@ menuHandler(ev){
         )
     }
 }
+//{this.props.open ? (): null}
 export default withStyles(styles)(Menubar)
