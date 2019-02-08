@@ -23,8 +23,10 @@ def delete_account():
     #when testing with Postman, pass in values via params
     args_list = request.args
     uid = args_list["user_id"]
-    UserManagement.delete_user_by_id(uid)
+    if not UserManagement.delete_user_by_id(uid):
+        abort(500)
     return True
+
 
 
 
@@ -34,7 +36,7 @@ def new_account():
     uid=args_list["user_id"]
     name = args_list["name"]
     u = User(uid,name)
-    UserManagement().create_user(u)
+    UserManagement.create_user(u)
     return True
 
     
