@@ -45,3 +45,17 @@ class UserManagement:
         dbcon.db_conn_close()
 
         return User(*result)
+    @staticmethod
+    def delete_user_by_id(user_id):
+        dbcon = dbaseConn()
+        print(user_id)
+        with dbcon.db.cursor() as cursor:
+            # delete a user
+            sql = "DELETE FROM `users` WHERE `user_id`=%s"
+            
+            cursor.execute(sql, (user_id))
+            result = cursor.fetchone()
+
+        dbcon.db_conn_close()
+
+        return User(*result)
