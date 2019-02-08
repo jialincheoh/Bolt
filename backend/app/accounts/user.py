@@ -52,10 +52,10 @@ class UserManagement:
         with dbcon.db.cursor() as cursor:
             # delete a user
             sql = "DELETE FROM `users` WHERE `user_id`=%s"
-            
-            cursor.execute(sql, (user_id))
-            result = cursor.fetchone()
-
+            try: 
+                cursor.execute(sql, (user_id,))
+                dbcon.db.commit()
+            except Exception:
+                return("An error occurred during account deletion")
         dbcon.db_conn_close()
-
-        return User(*result)
+        return ("Successfully deleted")
