@@ -21,22 +21,20 @@ CORS(accountRoutes)
 @accountRoutes.route("/delete_account", methods=["POST"])
 def delete_account():
     #when testing with Postman, pass in values via params
-    a = request.args
-    uid = a["user_id"]
+    args_list = request.args
+    uid = args_list["user_id"]
     UserManagement.delete_user_by_id(uid)
-    return "Successfully deleted account"
+    return True
 
 
 
 @accountRoutes.route("/add_account", methods=["POST"])
 def new_account():
-    a = request.args
-    uid=a["user_id"]
-    name = a["name"]
+    args_list = request.args
+    uid=args_list["user_id"]
+    name = args_list["name"]
     u = User(uid,name)
-    try:
-        UserManagement().create_user(u)
-    except Exception:
-        return "Error during account creation"
+    UserManagement().create_user(u)
+    return True
 
-    return "Successfully made account"
+    

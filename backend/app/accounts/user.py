@@ -55,7 +55,7 @@ class UserManagement:
             try: 
                 cursor.execute(sql, (user_id,))
                 dbcon.db.commit()
-            except Exception:
-                return("An error occurred during account deletion")
+            except KeyError:
+                return False
         dbcon.db_conn_close()
-        return ("Successfully deleted")
+        return True
