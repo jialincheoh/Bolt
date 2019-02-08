@@ -45,7 +45,8 @@ class UserManagement:
         dbcon.db_conn_close()
 
         return User(*result)
-    @staticmethod
+    #@staticmethod
+    
     def deleteUser(uid):
         dbcon =  dbaseConn()
         with dbcon.db.cursor() as cursor:
