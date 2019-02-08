@@ -41,7 +41,8 @@ class UserManagement:
             sql = "SELECT `user_id`, `name` FROM `users` WHERE `user_id`=%s"
             cursor.execute(sql, (user_id,))
             result = cursor.fetchone()
-
+            if result is None:
+                return None
         dbcon.db_conn_close()
 
         return User(*result)
