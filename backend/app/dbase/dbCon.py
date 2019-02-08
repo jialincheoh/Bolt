@@ -1,5 +1,5 @@
 import pymysql
-from .config import *
+from app.config import *
 import gc
 
 gc.collect()
