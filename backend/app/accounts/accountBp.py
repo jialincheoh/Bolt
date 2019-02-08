@@ -28,7 +28,7 @@ def delete_account():
 
 
 
-@accountRoutes.route("/add_account", methods=["GET"])
+@accountRoutes.route("/add_account", methods=["POST"])
 def new_account():
     a = request.args
     uid=a["user_id"]
@@ -39,4 +39,4 @@ def new_account():
     except Exception:
         return "Error during account creation"
 
-    return "New Account Route"
+    return "Successfully made account"
